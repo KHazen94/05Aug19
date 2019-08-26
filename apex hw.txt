@@ -1,0 +1,83 @@
+public class ApexHW1 {
+    
+/////////////////////////
+//
+// Apex HW
+// Created on: various days and time over the weekend
+// Author: Katie (Me hopefully)
+// Description: the biggest pains in my behind that better work
+//
+//
+//
+/////////////////////////
+      
+    
+//fibonacci code
+
+
+    
+    public static Integer fib(Integer n) {
+        if (n <= 1) 
+            return n;
+            return fib(n-1) + fib(n-2);
+    
+        }
+    
+
+    //sort array list
+    
+    public static Integer[] sortArray(Integer[] intList){
+        for(Integer i = 0; i < intList.size(); i++) {
+            for(Integer j = i; j < intList.size(); j++) {
+                Integer x;
+                if(intList[i]>intList[j]){
+                    x = intList[i];
+                    intList[i] = intList[j];
+                    intList[j] = x;
+                    
+                }
+            }
+        }
+        
+        return intList;
+    }
+    
+   //factorial
+   
+    public static Integer factorial(Integer n){ 
+
+    return (n==1 || n==0) ? 1: n * factorial(n - 1); 
+    }
+    
+	//rotate array left n times
+    
+    public static Integer[] rotateLeftNTimes(Integer[] arrayDot, Integer n) {
+		Integer x;
+        for (Integer i=0; i<n; i++){
+            x=arrayDot[0];
+            for (Integer j=0; j<arrayDot.size()-1; j++){
+                arrayDot[j]= arrayDot[j+1];
+            }
+            arrayDot[arrayDot.size()-1]=x;
+        }
+        return arrayDot;
+  }
+    
+    //update account size
+    
+    public static void updateAccountSize(){
+        List<Account> accountList = [SELECT Size__c, NumberOfEmployees FROM Account];
+        
+        for(Account a: accountList){
+            if(a.NumberOfEmployees < 1000){
+                a.Size__c = 'small';
+            } else if(a.NumberOfEmployees >= 1000 && a.NumberOfEmployees < 10000){
+                a.Size__c = 'medium';
+            } else {
+                a.Size__c = 'large';
+            }
+            update accountList;
+        }
+        
+    }
+}
